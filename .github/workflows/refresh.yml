@@ -1,0 +1,41 @@
+name: Refresh ETF holdings
+
+# Regenerates etf_holdings.json from public data once a month and commits it.
+# The Lume app fetches this file at runtime (anonymous, public reference data),
+# so users get fresh look-through data without an App Store release.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"   # 06:00 UTC on the 1st of each month
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate dataset
+        run: |
+          python3 tools/fetch_holdings.py
+          python3 tools/build_holdings.py
+          python3 tools/fetch_sectors.py
+          python3 tools/build_holdings.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- etf_holdings.json tools/sectors.json tools/etf_manifest.json; then
+            echo "No dataset change."
+            exit 0
+          fi
+          git config user.name  "lume-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add etf_holdings.json tools/sectors.json tools/etf_manifest.json tools/holdings_raw
+          git commit -m "chore: monthly ETF holdings refresh"
+          git push
