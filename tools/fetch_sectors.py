@@ -15,7 +15,9 @@ import urllib.request
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(ROOT)
 SECTORS_PATH = os.path.join(ROOT, "sectors.json")
-DATA_PATH = os.path.join(REPO, "Lume", "Data", "etf_holdings.json")
+# App repo bundles it under Lume/Data; the standalone data repo has it at root.
+_APP_DATA = os.path.join(REPO, "Lume", "Data", "etf_holdings.json")
+DATA_PATH = _APP_DATA if os.path.isfile(_APP_DATA) else os.path.join(REPO, "etf_holdings.json")
 API = "https://stockanalysis.com/api/symbol/s/{sym}/overview"
 
 # stockanalysis sector labels -> Lume's labels (match etf_holdings sectors)
