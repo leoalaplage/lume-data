@@ -4813,32 +4813,38 @@
         {
           "symbol": "TWLO",
           "name": "Twilio Inc.",
-          "weight": 0.0083,
+          "weight": 0.0086,
           "sector": "Technology"
         },
         {
           "symbol": "CRS",
           "name": "Carpenter Technology Corporation",
-          "weight": 0.0083,
+          "weight": 0.0084,
           "sector": "Industrials"
         },
         {
           "symbol": "MKSI",
           "name": "MKS Inc.",
-          "weight": 0.0077,
+          "weight": 0.0082,
           "sector": "Technology"
-        },
-        {
-          "symbol": "ILMN",
-          "name": "Illumina, Inc.",
-          "weight": 0.0075,
-          "sector": "Health Care"
         },
         {
           "symbol": "CW",
           "name": "Curtiss-Wright Corporation",
+          "weight": 0.0077,
+          "sector": "Industrials"
+        },
+        {
+          "symbol": "NVT",
+          "name": "nVent Electric plc",
           "weight": 0.0075,
           "sector": "Industrials"
+        },
+        {
+          "symbol": "ENTG",
+          "name": "Entegris, Inc.",
+          "weight": 0.0075,
+          "sector": "Technology"
         },
         {
           "symbol": "ATI",
@@ -4847,22 +4853,10 @@
           "sector": "Industrials"
         },
         {
-          "symbol": "MTZ",
-          "name": "MasTec, Inc.",
+          "symbol": "ILMN",
+          "name": "Illumina, Inc.",
           "weight": 0.0073,
-          "sector": "Industrials"
-        },
-        {
-          "symbol": "NVT",
-          "name": "nVent Electric plc",
-          "weight": 0.0073,
-          "sector": "Industrials"
-        },
-        {
-          "symbol": "ENTG",
-          "name": "Entegris, Inc.",
-          "weight": 0.0072,
-          "sector": "Technology"
+          "sector": "Health Care"
         },
         {
           "symbol": "FTI",
@@ -4871,34 +4865,40 @@
           "sector": "Energy"
         },
         {
+          "symbol": "STRL",
+          "name": "Sterling Infrastructure, Inc.",
+          "weight": 0.007,
+          "sector": "Industrials"
+        },
+        {
+          "symbol": "MTZ",
+          "name": "MasTec, Inc.",
+          "weight": 0.007,
+          "sector": "Industrials"
+        },
+        {
           "symbol": "WWD",
           "name": "Woodward, Inc.",
           "weight": 0.0069,
           "sector": "Industrials"
         },
         {
-          "symbol": "STRL",
-          "name": "Sterling Infrastructure, Inc.",
-          "weight": 0.0069,
-          "sector": "Industrials"
-        },
-        {
           "symbol": "MTSI",
           "name": "MACOM Technology Solutions Holdings, Inc.",
-          "weight": 0.0067,
+          "weight": 0.0068,
+          "sector": "Technology"
+        },
+        {
+          "symbol": "P",
+          "name": "Everpure, Inc.",
+          "weight": 0.0068,
           "sector": "Technology"
         },
         {
           "symbol": "XPO",
           "name": "XPO, Inc.",
-          "weight": 0.0067,
+          "weight": 0.0066,
           "sector": "Industrials"
-        },
-        {
-          "symbol": "UTHR",
-          "name": "United Therapeutics Corporation",
-          "weight": 0.0064,
-          "sector": "Health Care"
         }
       ]
     },
