@@ -1,0 +1,47 @@
+name: Refresh quality scores
+
+# Regenerates stock_quality.json from SEC EDGAR (public-domain XBRL) plus a price
+# snapshot, once a week, and commits it. The Lume app fetches this file at runtime
+# (anonymous, public reference data), so the quality scanner stays fresh without
+# an App Store release. Point-in-time metrics are TTM, so they update as companies
+# file their 10-Qs.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # 06:00 UTC every Monday
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Never let two rebuilds run/push at once.
+concurrency:
+  group: refresh-quality
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # No pip dependencies — build_quality.py is pure standard library.
+      - name: Regenerate quality dataset
+        run: python3 tools/build_quality.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- stock_quality.json; then
+            echo "No dataset change."
+            exit 0
+          fi
+          git config user.name  "lume-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add stock_quality.json
+          git commit -m "chore: weekly quality scores refresh"
+          git push
